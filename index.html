@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+	<script src="jquery.min.js"></script>
+	<script src="velocity.min.js"></script>
+	<script src="velocity.ul.min.js"></script>
+</head>
+<body>
+
+	<section class="bar">
+		<a href="#group">top of the page</a>
+		<div class="open-overlay">
+			<span class="bar-top"></span>
+			<span class="bar-middle"></span>
+			<span class="bar-bottom"></span>
+		</div>
+	</section>
+
+	<div id="container">
+
+		<div id="group">
+
+			<div class="foreground">
+
+				<div id="top" class="name">
+					<h1>Hello. I am...</h1>
+					<img src="img/fish1.png">
+					<h2>I want to create AMAZING website</h2>
+				</div> <!-- .name -->
+
+				<div class="overlay-navigation">
+					<nav role="navigation">
+						<ul>
+							<li><a href="#about" data-content="Curious?">About</a></li>
+							<li><a href="#portfolio" data-content="I got Game">Porfolio</a></li>
+							<li><a href="#strength" data-content="By VIA">My Strength</a></li>
+							<li><a href="#contact" data-content="Don't hesitate">Contact</a></li>
+						</ul>	
+					</nav>
+				</div> <!-- .overlay-navigation -->
+
+				<script type="text/javascript"> //navigation
+					$(".open-overlay").click(function(){
+						$(".open-overlay").css("pointer-events","none");
+						var overlay_navigation = $(".overlay-navigation"),
+								top_bar = $(".bar-top"),
+								middle_bar = $(".bar-middle"),
+								bottom_bar = $(".bar-bottom");
+
+						overlay_navigation.toggleClass("overlay-active");
+						if(overlay_navigation.hasClass("overlay-active")){
+							top_bar.removeClass("animate-out-top-bar").addClass("animate-top-bar");
+							middle_bar.removeClass("animate-out-middle-bar").addClass("animate-middle-bar");
+							bottom_bar.removeClass("animate-out-bottom-bar").addClass("animate-bottom-bar");
+							overlay_navigation.removeClass("overlay-slide-up").addClass("overlay-slide-down");
+							overlay_navigation.velocity("transition.slideLeftIn",{
+								duration: 300,
+								delay: 0,
+								begin: function(){
+									$("nav ul li").velocity("transition.perspectiveLeftIn",{
+										stagger: 150,
+										delay: 0,
+										complete: function(){
+											$("nav ul li a").velocity({
+												opacity: [1,0]
+											},{
+												delay: 10,
+												duration: 140
+											});
+											$(".open-overlay").css("pointer-events", "auto");
+										}
+									})
+								}
+							})
+						} else {
+							$(".open-overlay").css("pointer-events","none");
+							top_bar.removeClass("animate-top-bar").addClass("animate-out-top-bar");
+							middle_bar.removeClass("animate-middle-bar").addClass("animate-out-middle-bar");
+							bottom_bar.removeClass("animate-bottom-bar").addClass("animate-out-bottom-bar");
+							overlay_navigation.removeClass("overlay-slide-down").addClass("overlay-slide-up");
+							$("nav ul li").velocity("transition.perspectiveRightOut",{
+								stagger: 150,
+								delay: 0,
+								complete: function(){
+									overlay_navigation.velocity("transition.fadeOut",{
+										delay: 0,
+										duration: 300,
+										complete: function(){
+											$("nav ul li a").velocity({
+												opacity: [0,1],
+											},{
+												delay: 0,
+												duration: 50
+											});
+											$(".open-overlay").css("pointer-events", "auto");
+										}
+									});
+								}
+							})
+						}
+					})
+				</script> <!-- navigation -->
+
+				<div class="about">
+					<img src="img/fish_b.png">
+					<p>Hi. I'm a self taught web developer from Tokyo, Japan. I'm currently learning JavaScript. I have experience of studying abroad in Cebu, Philippines for 6 weeks. I learned Engilsh and the basics of programming. Types of programming languages are HTML/CSS/Sass, Bootstrap, PHP, MySQL, Virtualization and Git. It's hard to teach myself but for now I'm having fun getting more understanding of WEB development !</p>
+				</div> <!-- .about -->
+
+				<div class="portfolio">
+					<div class="tool">
+						<h2>Here's a few of the tools I use</h2>
+						<div class="list">
+							<ul class="float">
+								<li>HTML</li>
+								<li>CSS/Sass</li>
+								<li>Javascript</li>
+							</ul>
+							<ul class="float">
+								<li>JQuery</li>
+								<li>Bootstrap</li>
+								<li>Virtualization</li>
+							</ul>
+							<ul class="float">
+								<li>Git</li>
+								<li>PHP</li>
+								<li>MySQL</li>
+							</ul>
+						</div> <!-- list -->
+					</div> <!-- tool -->
+
+					<div class="work">
+						<a href="https://codepen.io/knak1030/pen/ZjdGjg" target="_blank">
+							<div class="portfolio-pic portfolio-pic-game"></div>
+						</a>
+						<h3>MEMORY GAME</h3>
+						<h4>uses: JS</h4>
+					</div>
+					<div class="work">
+						<a href="https://codepen.io/knak1030/pen/djEGMB" target="_blank">
+							<div class="portfolio-pic portfolio-pic-weather"></div>
+						</a>
+						<h3>GET WEATHER</h3>
+						<h4>uses: JQuery, API</h4>
+					</div>
+
+				</div> <!-- .portfolio -->
+
+				<div class="strength">
+					<div class="wrapper">
+						<ul class="timeline">
+
+							<li class="topic">
+								<input type="radio" name="topics" class="radio" id="topic6" checked>
+								<div class="relative">
+									<label for="topic6">親切心<br>KINDNESS</label>
+									<span class="time">No.1</span>
+									<span class="circle"></span>
+								</div> <!-- relative -->
+								<div class="content">
+									<p>人に親切し、人のために良いことをする。他人を助け、面倒を見てあげる。親切心を強みとするあなたは、他の人に対して親切で寛大で、忙し過ぎるからといって人に親切にできないということはない人です。見知らぬ相手に対しても、喜んで良い行いができる人です。</p>
+								</div> <!-- content -->
+							</li> <!-- topic -->
+
+							<li class="topic">
+								<input type="radio" name="topics" class="radio" id="topic5" >
+								<div class="relative">
+									<label for="topic5">審美眼<br><small>APPRECIATION OF BEAUTY & EXCELLENCE</small></label>
+									<span class="time">No.2</span>
+									<span class="circle"></span>
+								</div> <!-- relative -->
+								<div class="content" style="padding-top: 150px;">
+									<p>人生のあらゆる領域、つまり自然から芸術、数学、科学、日常の経験に至るまで、そこに美や、卓越性、あるいは熟練の技を見出し、それらの真価を認める人。審美眼を強みとするあなたは、人生のあらゆる領域、つまり自然から芸術、数学、科学、日常の経験に至るまで、そこに美や、卓越性や、熟練した技を見出し、それらを深く味わう力のある人です。</p>
+								</div> <!-- content -->
+							</li> <!-- topic -->
+
+							<li class="topic">
+								<input type="radio" name="topics" class="radio" id="topic4">
+								<div class="relative">
+									<label for="topic4">創造性<br>CREATIVITY</label>
+									<span class="time">No.3</span>
+									<span class="circle"></span>
+								</div> <!-- relative -->
+								<div class="content">
+									<p>物事を行うのに目新しく、生産性の高いやり方を考える力。芸術的な成果を含むがそれに限定されない。新しいやり方を考えることは、創造性を強みとするあなたを表す重要な要素の１つとなっています。より良い方法が見つけられる限り、あなたは従来のやり方では決して満足することがない人です。</p>
+								</div> <!-- content -->
+							</li> <!-- topic -->
+
+							<li class="topic">
+								<input type="radio" name="topics" class="radio" id="topic3">
+								<div class="relative">
+									<label for="topic3">好奇心<br>CURIOSITY</label>
+									<span class="time">No.4</span>
+									<span class="circle"></span>
+								</div> <!-- relative -->
+								<div class="content">
+									<p>今起きているあらゆる経験それ自体に興味を持ち、主題やテーマに対して興味深いと感じる。探求心を発揮して新しいことを発見することを好む。好奇心を強みとするあなたは、何事にも好奇心を抱きます。常に問いを持ち、あらゆる主題やテーマについて興味深く感じます。あなたは探求と発見を好む人です。</p>
+								</div> <!-- content -->
+							</li> <!-- topic -->
+
+							<li class="topic">
+								<input type="radio" name="topics" class="radio" id="topic2">
+								<div class="relative">
+									<label for="topic2">向学心 <br>LOVE OF LEARNING</label>
+									<span class="time">No.5</span>
+									<span class="circle"></span>
+								</div> <!-- relative -->
+								<div class="content">
+									<p>新しいスキルや知識体系を身につけることは、独学でも正式な教育による場合でも明らかに好奇心の強みに関係しているが、好奇心の枠に留まらず、既知の知識についても体系的に理解を深める傾向がある。向学心を強みとするあなたは、授業でも、あるいは独学でも、新しいことを学ぶのが大好きです。あなたは学校や博物館あるいは読書など、いつでもどこでも学ぶ機会を得るのが大好きな人です。</p>
+								</div> <!-- content -->
+							</li> <!-- topic -->
+
+							<li class="topic">
+								<input type="radio" name="topics" class="radio" id="topic1">
+								<div class="relative">
+									<label for="topic1">VIA</label>
+									<span class="time">LINK</span>
+									<span class="circle"></span>
+								</div> <!-- relative -->
+								<div class="content">
+									<p>from VIA Institute on Character<br>
+						        ( <a href="https://www.viacharacter.org" target="_blink" style="text-decoration: none; color: gray;">https://www.viacharacter.org</a> )</p>
+								</div> <!-- content -->
+							</li> <!-- topic -->
+
+						</ul> <!-- timeline -->
+					</div> <!-- wrapper -->
+				</div> <!-- .strength -->
+
+				<div class="contact">
+					<a href="https://codepen.io/knak1030/" target="_blank">
+    				<div class="icon codepen">
+    					<i class="fab fa-codepen"></i>
+    				</div>
+    			</a>
+    			<a href="https://github.com/knak1030" target="_blank">
+    				<div class="icon github">
+    					<i class="fab fa-github"></i>
+    				</div>
+    			</a>
+    			<a href="https://twitter.com/kana_code" target="_blank">
+    				<div class="icon twitter">
+    					<i class="fab fa-twitter"></i>
+    				</div>
+    			</a>
+    			<p>kanacode.00@gmail.com</p>
+				</div> <!-- .contact -->
+			</div> <!-- .foreground -->
+
+			<div class="background">
+
+				<div id="about">
+					<img src="img/about.png">
+				</div>
+				<div id="portfolio">
+					<img src="img/portfolio.png">
+				</div>
+				<div id="strength">
+					<img src="img/strength.png">
+				</div>
+				<div id="contact">
+					<img src="img/contact.png">
+				</div>
+
+			</div> <!-- .background -->
+
+		</div> <!-- group -->
+	</div> <!-- .container -->
+
+
+
+</body>
+</html>
