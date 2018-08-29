@@ -310,6 +310,7 @@ h2 {
 
 .portfolio {
   padding-top: 100vh;
+  padding-bottom: 100vh;
   height: 200vh; }
 
 .portfolio p {
@@ -375,6 +376,8 @@ h4 {
     background-image: url(img/game.png); }
   .portfolio-pic-weather {
     background-image: url(img/weather.png); }
+  .portfolio-pic-seahorse {
+    background-image: url(img/seahorse.png); }
 
 .strength {
   padding-top: 100vh;
@@ -507,7 +510,7 @@ label {
   .wrapper {
     margin: 5% 5%; } }
 .contact {
-  padding-top: 100vh;
+  padding-top: 200vh;
   height: 100vh;
   text-align: center; }
   .contact p {
@@ -540,14 +543,14 @@ label {
 
 #portfolio {
   background: #FDCEA9;
-  height: 350vh; }
+  height: 440vh; }
 
 #strength {
   background: #87ceeb;
-  height: 400vh; }
+  height: 450vh; }
 
 #contact {
   background: #99B998;
-  height: 200vh; }
+  height: 250vh; }
 
 /*# sourceMappingURL=style.css.map */
