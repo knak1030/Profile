@@ -2,115 +2,88 @@
 <html lang="ja">
 <head>
 	<meta charset="utf-8">
-	<title>PROFILE</title>
+	<title>profile</title>
 	<link rel="stylesheet" type="text/css" href="style.css">
-	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.2/css/all.css" integrity="sha384-/rXc/GQVaYpyDdyxK+ecHPVYJSN9bmVFBvjA/9eOB+pb3F2w2N6fc5qB9Ew5yIns" crossorigin="anonymous">
 	<script src="jquery.min.js"></script>
+	<script src="jquery.scrollTo.min.js"></script>
 	<script src="velocity.min.js"></script>
 	<script src="velocity.ul.min.js"></script>
+
 </head>
 <body>
 
-	<section class="bar">
-		<a href="#group">top of the page</a>
-		<div class="open-overlay">
-			<span class="bar-top"></span>
-			<span class="bar-middle"></span>
-			<span class="bar-bottom"></span>
-		</div>
-	</section>
+	
 
-	<div id="container">
+	<div class="container">
 
-		<div id="group">
+		<div class="overlay-navigation">
+			<nav role="navigation">
+				<ul>
+					<li class="nav-li"><a id="nav-about" href="#about" data-content="Curious?">About</a></li>
+					<li class="nav-li"><a id="nav-portfolio" href="#portfolio" data-content="I got Game">Portfolio</a></li>
+					<li class="nav-li"><a id="nav-strength" href="#strength" data-content="By VIA">My Strength</a></li>
+					<li class="nav-li"><a id="nav-contact" href="#contact" data-content="Don't hesitate">Contact</a></li>
+				</ul>
+			</nav>
+		</div> <!-- overlay-navigation -->
 
-			<div class="foreground">
+		<div class="hole-wrapper display-none">
 
-				<div id="top" class="name">
-					<h1>Hello. I am...</h1>
-					<img src="img/fish1.png">
-					<h2>I want to create AMAZING website</h2>
-				</div> <!-- .name -->
+			<div class="navigation-full">
+				<div class="toTop display-none">
+					<a id="to-top" data-content="Menu" href="#"><img id="totop" src="img/fish1.png"></a>
+				</div> <!-- toTop -->
+				<ul>
+					<li class="full-li li-about content-about display-none"><a id="nav-about" href="#about" data-content="Curious?">About</a>
+					</li>
+					<li class="full-li li-portfolio content-portfolio display-none"><a id="nav-portfolio" href="#portfolio" data-content="I got Game">Portfolio</a></li>
+					<li class="full-li li-strength content-strength display-none"><a id="nav-strength" href="#strength" data-content="By VIA">My Strength</a></li>
+					<li class="full-li li-contact content-contact display-none"><a id="nav-contact" href="#contact" data-content="Don't hesitate">Contact</a></li>
+				</ul>
+			</div> <!-- navigation-full -->
 
-				<div class="overlay-navigation">
-					<nav role="navigation">
-						<ul>
-							<li><a href="#about" data-content="Curious?">About</a></li>
-							<li><a href="#portfolio" data-content="I got Game">Porfolio</a></li>
-							<li><a href="#strength" data-content="By VIA">My Strength</a></li>
-							<li><a href="#contact" data-content="Don't hesitate">Contact</a></li>
-						</ul>	
-					</nav>
-				</div> <!-- .overlay-navigation -->
-
-				<script type="text/javascript"> //navigation
-					$(".open-overlay").click(function(){
-						$(".open-overlay").css("pointer-events","none");
-						var overlay_navigation = $(".overlay-navigation"),
-								top_bar = $(".bar-top"),
-								middle_bar = $(".bar-middle"),
-								bottom_bar = $(".bar-bottom");
-
-						overlay_navigation.toggleClass("overlay-active");
-						if(overlay_navigation.hasClass("overlay-active")){
-							top_bar.removeClass("animate-out-top-bar").addClass("animate-top-bar");
-							middle_bar.removeClass("animate-out-middle-bar").addClass("animate-middle-bar");
-							bottom_bar.removeClass("animate-out-bottom-bar").addClass("animate-bottom-bar");
-							overlay_navigation.removeClass("overlay-slide-up").addClass("overlay-slide-down");
-							overlay_navigation.velocity("transition.slideLeftIn",{
-								duration: 300,
-								delay: 0,
-								begin: function(){
-									$("nav ul li").velocity("transition.perspectiveLeftIn",{
-										stagger: 150,
-										delay: 0,
-										complete: function(){
-											$("nav ul li a").velocity({
-												opacity: [1,0]
-											},{
-												delay: 10,
-												duration: 140
-											});
-											$(".open-overlay").css("pointer-events", "auto");
-										}
-									})
-								}
-							})
-						} else {
-							$(".open-overlay").css("pointer-events","none");
-							top_bar.removeClass("animate-top-bar").addClass("animate-out-top-bar");
-							middle_bar.removeClass("animate-middle-bar").addClass("animate-out-middle-bar");
-							bottom_bar.removeClass("animate-bottom-bar").addClass("animate-out-bottom-bar");
-							overlay_navigation.removeClass("overlay-slide-down").addClass("overlay-slide-up");
-							$("nav ul li").velocity("transition.perspectiveRightOut",{
-								stagger: 150,
-								delay: 0,
-								complete: function(){
-									overlay_navigation.velocity("transition.fadeOut",{
-										delay: 0,
-										duration: 300,
-										complete: function(){
-											$("nav ul li a").velocity({
-												opacity: [0,1],
-											},{
-												delay: 0,
-												duration: 50
-											});
-											$(".open-overlay").css("pointer-events", "auto");
-										}
-									});
-								}
-							})
-						}
-					})
-				</script> <!-- navigation -->
-
-				<div class="about">
+			<div class="about content-about display-none" id="about">
+				<div class="interior">
 					<img src="img/fish_b.png">
 					<p>Hi. I'm a self taught web developer from Tokyo, Japan. I'm currently learning JavaScript. I have experience of studying abroad in Cebu, Philippines for 6 weeks. I learned Engilsh and the basics of programming. Types of programming languages are HTML/CSS/Sass, Bootstrap, PHP, MySQL, Virtualization and Git. It's hard to teach myself but for now I'm having fun getting more understanding of WEB development !</p>
-				</div> <!-- .about -->
+				</div> <!-- interior -->
+			</div> <!-- .about -->
 
-				<div class="portfolio">
+			<div class="portfolio content-portfolio display-none" id="portfolio">
+				<div class="interior">
+					<div class="items">
+						<div class="work">
+							<a href="https://codepen.io/knak1030/pen/ZjdGjg" target="_blank">
+								<div class="portfolio-pic portfolio-pic-game"></div>
+							</a>
+							<h3>MEMORY GAME</h3>
+							<h4>uses: JS</h4>
+						</div>
+						<div class="work">
+							<a href="https://codepen.io/knak1030/pen/djEGMB" target="_blank">
+								<div class="portfolio-pic portfolio-pic-weather"></div>
+							</a>
+							<h3>GET WEATHER</h3>
+							<h4>uses: JQuery, API</h4>
+						</div>
+						<div class="work">
+							<a href="https://codepen.io/knak1030/pen/BOLOae" target="_blank">
+								<div class="portfolio-pic portfolio-pic-seahorse"></div>
+							</a>
+							<h3>SVG ANIMATION</h3>
+							<h4>uses: HTML/CSS</h4>
+						</div>
+						<div class="work">
+							<a href="https://codepen.io/knak1030/pen/ReONeP" target="_blank">
+								<div class="portfolio-pic portfolio-pic-scroll"></div>
+							</a>
+							<h3>SCROLL ANIMATION</h3>
+							<h4>uses: Javascript</h4>
+						</div>
+						
+					</div> <!-- items -->
+
 					<div class="tool">
 						<h2>Here's a few of the tools I use</h2>
 						<div class="list">
@@ -131,33 +104,11 @@
 							</ul>
 						</div> <!-- list -->
 					</div> <!-- tool -->
+				</div> <!-- interior -->
+			</div> <!-- .portfolio -->
 
-					<div class="work">
-						<a href="https://codepen.io/knak1030/pen/ZjdGjg" target="_blank">
-							<div class="portfolio-pic portfolio-pic-game"></div>
-						</a>
-						<h3>MEMORY GAME</h3>
-						<h4>uses: JS</h4>
-					</div>
-					<div class="work">
-						<a href="https://codepen.io/knak1030/pen/djEGMB" target="_blank">
-							<div class="portfolio-pic portfolio-pic-weather"></div>
-						</a>
-						<h3>GET WEATHER</h3>
-						<h4>uses: JQuery, API</h4>
-					</div>
-					<div class="work">
-						<a href="https://codepen.io/knak1030/pen/BOLOae" target="_blank">
-							<div class="portfolio-pic portfolio-pic-seahorse"></div>
-						</a>
-						<h3>SVG ANIMATION</h3>
-						<h4>uses: HTML/CSS</h4>
-					</div>
-
-
-				</div> <!-- .portfolio -->
-
-				<div class="strength">
+			<div class="strength content-strength display-none" id="strength">
+				<div class="interior">
 					<div class="wrapper">
 						<ul class="timeline">
 
@@ -174,7 +125,7 @@
 							</li> <!-- topic -->
 
 							<li class="topic">
-								<input type="radio" name="topics" class="radio" id="topic5" >
+								<input type="radio" name="topics" class="radio" id="topic5">
 								<div class="relative">
 									<label for="topic5">審美眼<br><small>APPRECIATION OF BEAUTY & EXCELLENCE</small></label>
 									<span class="time">No.2</span>
@@ -236,13 +187,15 @@
 
 						</ul> <!-- timeline -->
 					</div> <!-- wrapper -->
-				</div> <!-- .strength -->
+				</div>
+			</div> <!-- .strength -->
 
-				<div class="contact">
+			<div class="contact content-contact display-none" id="contact">
+				<div class="interior">
 					<a href="https://codepen.io/knak1030/" target="_blank">
-    				<div class="icon codepen">
-    					<i class="fab fa-codepen"></i>
-    				</div>
+  				<div class="icon codepen">
+  					<i class="fab fa-codepen"></i>
+  				</div>
     			</a>
     			<a href="https://github.com/knak1030" target="_blank">
     				<div class="icon github">
@@ -254,31 +207,146 @@
     					<i class="fab fa-twitter"></i>
     				</div>
     			</a>
-    			<p>kanacode.00@gmail.com</p>
-				</div> <!-- .contact -->
-			</div> <!-- .foreground -->
-
-			<div class="background">
-
-				<div id="about">
-					<img src="img/about.png">
+    			<a href="mailto:kanacode.00@gmail.com">
+    				<div class="icon twitter">
+    					<i class="far fa-envelope-open"></i>
+    				</div>
+    			</a>
 				</div>
-				<div id="portfolio">
-					<img src="img/portfolio.png">
+			</div> <!-- .contact -->
+
+		</div> <!-- hole-wrapper -->
+
+		<div class="top" id="top">
+			<div class="top-content">
+				<h1>Hello. I am ...</h1><span></span>
+				<div class="img">
+					<img class="enter-button" src="img/fish_b.png">
 				</div>
-				<div id="strength">
-					<img src="img/strength.png">
-				</div>
-				<div id="contact">
-					<img src="img/contact.png">
-				</div>
+			</div> <!-- content -->
+		</div> <!-- top -->
 
-			</div> <!-- .background -->
+		<script type="text/javascript">
 
-		</div> <!-- group -->
-	</div> <!-- .container -->
+			$(function() {
+				var welcomeSection = $('.top'),
+						enterButton = welcomeSection.find('.enter-button'),
+						holeWrapper = $(".hole-wrapper"),
+						toTop = $("#to-top");
+
+				toTop.on('click', function(e){
+					e.preventDefault();
+					$(".overlay-navigation").removeClass("display-none");
+				})
+
+				enterButton.on('click', function(e) {
+					e.preventDefault();
+					welcomeSection.fadeOut();
+					holeWrapper.removeClass("display-none");
+					holeWrapper.fadeIn(1000);
+				})
+
+				enterButton.click(function(){
+					var overlay_navigation = $(".overlay-navigation");
+
+					overlay_navigation.toggleClass("overlay-active");
+						overlay_navigation.removeClass("overlay-slide-up").addClass("overlay-slide-down");
+						overlay_navigation.velocity("transition.slideLeftIn",{
+							duration: 300,
+							delay: 0,
+							begin: function(){
+								$("nav ul li").velocity("transition.perspectiveLeftIn",{
+									stagger: 150,
+									delay: 0,
+									complete: function(){
+										$("nav ul li a").velocity({
+											opacity: [1,0]
+										},{
+											delay: 10,
+											duration: 140
+										});
+									}
+								})
+							}
+						})
+				})  ///////////// enterButton.click
+
+				toTop.click(function(){
+					var overlay_navigation = $(".overlay-navigation");
+
+					overlay_navigation.toggleClass("overlay-active");
+						overlay_navigation.removeClass("overlay-slide-up").addClass("overlay-slide-down");
+						overlay_navigation.velocity("transition.slideLeftIn",{
+							duration: 300,
+							delay: 0,
+							begin: function(){
+								$("nav ul li").velocity("transition.perspectiveLeftIn",{
+									stagger: 150,
+									delay: 0,
+									complete: function(){
+										$("nav ul li a").velocity({
+											opacity: [1,0]
+										},{
+											delay: 10,
+											duration: 140
+										});
+									}
+								})
+							}
+						})
+				})  ///////////// toTop.click
 
 
+			})
+		</script> <!-- button-animation -->
+
+		<script type="text/javascript">
+				$(function(){
+						$("#nav-about").click(function(e){
+							e.preventDefault();
+							$(".overlay-navigation").addClass("display-none");
+							$("#about").removeClass("display-none");
+							$(".li-about").removeClass("display-none");
+							$(".content-portfolio").addClass("display-none");
+							$(".content-strength").addClass("display-none");
+							$(".content-contact").addClass("display-none");
+							$(".toTop").removeClass("display-none");
+						})
+						$("#nav-portfolio").click(function(e){
+							e.preventDefault();
+							$(".overlay-navigation").addClass("display-none");
+							$("#portfolio").removeClass("display-none");
+							$(".li-portfolio").removeClass("display-none");
+							$(".content-about").addClass("display-none");
+							$(".content-strength").addClass("display-none");
+							$(".content-contact").addClass("display-none");
+							$(".toTop").removeClass("display-none");
+						})
+						$("#nav-strength").click(function(e){
+							e.preventDefault();
+							$(".overlay-navigation").addClass("display-none");
+							$("#strength").removeClass("display-none");
+							$(".li-strength").removeClass("display-none");
+							$(".content-portfolio").addClass("display-none");
+							$(".content-about").addClass("display-none");
+							$(".content-contact").addClass("display-none");
+							$(".toTop").removeClass("display-none");
+						})
+						$("#nav-contact").click(function(e){
+							e.preventDefault();
+							$(".overlay-navigation").addClass("display-none");
+							$("#contact").removeClass("display-none");
+							$(".li-contact").removeClass("display-none");
+							$(".content-portfolio").addClass("display-none");
+							$(".content-strength").addClass("display-none");
+							$(".content-about").addClass("display-none");
+							$(".toTop").removeClass("display-none");
+						})
+						
+					})
+		</script> <!-- nav-animation 2 -->
+
+	</div> <!-- container -->
 
 </body>
 </html>
